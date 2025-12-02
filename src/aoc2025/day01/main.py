@@ -1,5 +1,4 @@
-import os
-import sys
+from ..shared import run
 
 # fmt: off
 oneline = lambda file:(lambda r:r(lambda a,v:(lambda n:(n[0],a[1]+(n[0]==0),a[2]+n[1]))((lambda n,s,i:r(lambda a,_:((a[0]+s)%100,a[1]+((a[0]+s)%100==0),),range(n),(i,0),))(int(v[1:]),(ord(v[0])-79)//3,a[0])),[i for i in open(file).read().split("\n")if i.strip()],(50,0,0),))(__import__("functools").reduce)[1:]
@@ -36,18 +35,8 @@ def part2(file):
     return shared(file)[1]
 
 
-def run(file, func):
-    scriptdir = os.path.dirname(os.path.realpath(sys.argv[0]))
-    res = func(os.path.join(scriptdir, file))
-    print(f"output for {func.__name__} {file}: {res}")
-
-
 def main():
     run("test1", part1)
     run("part1", part1)
     run("test1", part2)
     run("part1", part2)
-
-
-if __name__ == "__main__":
-    main()
