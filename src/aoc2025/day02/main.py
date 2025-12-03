@@ -1,4 +1,4 @@
-from ..shared import commas, run
+from ..shared import run
 
 
 def bad_part1(id, n=2):
@@ -23,15 +23,17 @@ def shared(ranges, bad):
 
 
 def part1(ranges):
+    sep = ","  # pyright: ignore[reportUnusedVariable]
     return shared(ranges, bad_part1)
 
 
 def part2(ranges):
+    sep = ","  # pyright: ignore[reportUnusedVariable]
     return shared(ranges, bad_part2)
 
 
 def main():
-    run("test1", part1, commas)
-    run("part1", part1, commas)
-    run("test1", part2, commas)
-    run("part1", part2, commas)
+    run("test1", part1)
+    run("part1", part1)
+    run("test1", part2)
+    run("part1", part2)

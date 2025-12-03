@@ -15,7 +15,8 @@ for i in modules:
 
 def main():
     for i in modules:
-        print(i)
+        globals()[i]()
+        print("------")
 
 
 __all__ = ["shared", "main"]

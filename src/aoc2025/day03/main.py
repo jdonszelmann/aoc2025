@@ -1,6 +1,6 @@
-from functools import partial, reduce
+from functools import reduce
 
-from ..shared import lines, run
+from ..shared import run
 
 
 def argmax(line):
@@ -29,7 +29,7 @@ def part2(lines):
 
 
 def main():
-    run("test1", part1, lines)
-    run("part1", part1, lines)
-    run("test1", part2, lines)
-    run("part1", part2, lines)
+    run("test1", part1)
+    run("part1", part1)
+    run("test1", part2)
+    run("part1", part2)
