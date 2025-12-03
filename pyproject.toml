@@ -4,7 +4,9 @@ version = "0.1.0"
 description = "advent of code 2025"
 readme = "README.md"
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "tqdm>=4.67.1",
+]
 
 [build-system]
 requires = ["uv_build>=0.9.14,<0.10.0"]
@@ -13,4 +15,5 @@ build-backend = "uv_build"
 [project.scripts]
 day1 = "aoc2025.day01.main:main"
 day2 = "aoc2025.day02.main:main"
+day3 = "aoc2025.day03.main:main"
 all = "aoc2025:main"
