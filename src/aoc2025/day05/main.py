@@ -8,12 +8,11 @@ def range_tuples(ranges):
 
 
 def part2(ranges, _):
+    # fmt: off
     return reduce(
-        lambda a, r: (
-            s := a[0] - r[1],
-            a[1] + (r[0] - a[2] + 1) * (not s),
-            a[2] if a[0] else r[0],
-        ),
+        lambda a, r: (s := a[0] - r[1], a[1] + (r[0] - a[2] + 1) * (not s), a[2] if a[0] else r[0]),
+        # technically one char shorter
+        # lambda a, r: (s := a[0] - r[1], a[1] + (r[0] - a[2] + 1) * (not s), (a + r)[2:][not a[0]]),
         sorted(i for r in range_tuples(ranges) for i in zip(r, [-1, 1])),
         (0, 0, 0),
     )[1]
