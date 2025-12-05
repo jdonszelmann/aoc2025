@@ -17,23 +17,31 @@ def print_map(x):
     return x
 
 
+def iter_lines(source):
+    return (i.strip() for i in source.split("\n") if i.strip())
+
+
 def lines(file):
-    yield from (i.strip() for i in source(file).split("\n") if i.strip())
+    return [iter_lines(*source(file))]
+
+
+def line_parts(file):
+    return [iter_lines(i) for i in source(file)[0].split("\n\n")]
 
 
 def separated(file, sep=","):
-    yield from (i.strip() for i in source(file).split(sep) if i.strip())
+    return [(i.strip() for i in source(file)[0].split(sep) if i.strip())]
 
 
 commas = partial(separated, sep=",")
 
 
 def source(file):
-    return open(file).read()
+    return [open(file).read()]
 
 
 def name(file):
-    return file
+    return [file]
 
 
 def run(file, func, trans=None):
@@ -55,8 +63,8 @@ def run(file, func, trans=None):
             case ("src" | "source" | _,):
                 trans = source
             case (_, _, *_):
-                exit("too many parameters")
+                trans = line_parts
 
     scriptdir = os.path.dirname(os.path.realpath(str(module.__file__)))
-    res = func(trans(os.path.join(scriptdir, file)))  # pyright: ignore[reportOptionalCall]
+    res = func(*trans(os.path.join(scriptdir, file)))  # pyright: ignore[reportOptionalCall]
     print(f"output for {func.__name__} {file}: {res}")
