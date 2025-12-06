@@ -17,12 +17,12 @@ def print_map(x):
     return x
 
 
-def iter_lines(source):
-    return (i.strip() for i in source.split("\n") if i.strip())
+def iter_lines(source, strip=True):
+    return (i.strip() if strip else i for i in source.split("\n") if i.strip())
 
 
-def lines(file):
-    return [iter_lines(*source(file))]
+def lines(file, strip=True):
+    return [iter_lines(*source(file), strip=strip)]
 
 
 def line_parts(file):
